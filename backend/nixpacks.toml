@@ -1,0 +1,17 @@
+# nixpacks.toml — Railway build configuration for Spring Boot (Java 17)
+# This file tells Railway's Nixpacks how to build the Spring Boot backend.
+
+[phases.setup]
+# Explicitly install Java 17 JDK
+nixPkgs = ["jdk17_headless", "maven"]
+
+[phases.build]
+# chmod ensures mvnw is executable on Linux (Railway runs on Linux)
+cmds = [
+  "chmod +x mvnw",
+  "./mvnw clean package -DskipTests --no-transfer-progress"
+]
+
+[start]
+# Start the packaged Spring Boot JAR
+cmd = "java -jar target/admin-0.0.1-SNAPSHOT.jar"

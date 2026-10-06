@@ -1,0 +1,40 @@
+# ===========================
+# BACKEND — Spring Boot / Maven
+# ===========================
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/*.log
+backend/uploads/
+
+# ===========================
+# FRONTEND — Node / Vite / React
+# ===========================
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+
+# ===========================
+# SECURITY — Never commit real secrets
+# ===========================
+# .env.production is safe to commit (only VITE_API_URL placeholder)
+# .env.local files should NEVER be committed
+.env.local
+.env.*.local
+backend/uploads/
+
+# ===========================
+# IDE / OS
+# ===========================
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+*.class
+
+# ===========================
+# Logs
+# ===========================
+*.log
+logs/

@@ -1,0 +1,370 @@
+@import "tailwindcss";
+
+/* stylelint-disable at-rule-no-unknown */
+@theme {
+  --color-primary-red: #DC2626;
+  --color-primary-red-hover: #B91C1C;
+  --color-primary-orange: #F97316;
+  --color-primary-orange-hover: #EA580C;
+  --color-neutral-dark: #1F2937;
+  --color-neutral-dark-hover: #111827;
+  --color-neutral-light: #F3F4F6;
+  --color-neutral-white: #FFFFFF;
+}
+
+/* Custom Scrollbar for modern dashboard feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Base Body Styles */
+body {
+  background-color: #F9FAFB;
+  color: #1F2937;
+  font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Modal Scale-up Animation */
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Slide Up Animation (Bottom-to-Center) */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Airbnb-Style Dual Range Slider with Circular Grip Handles */
+.range-slider-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  appearance: none;
+  background: transparent;
+  z-index: 20;
+  outline: none;
+}
+
+.range-slider-input::-webkit-slider-thumb {
+  pointer-events: auto;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #222222;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  background-image: repeating-linear-gradient(90deg, transparent, transparent 1.5px, #9ca3af 1.5px, #9ca3af 2.5px);
+  background-size: 5px 7px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.range-slider-input::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.1);
+}
+
+.range-slider-input::-moz-range-thumb {
+  pointer-events: auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #222222;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+/* Brand Intro Reveal Animation */
+@keyframes brandAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+    filter: blur(16px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-brand-appear {
+  animation: brandAppear 1.2s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Category Infinite Marquee Scroll */
+@keyframes categoryScroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-33.333%, 0, 0);
+  }
+}
+
+.animate-category-scroll {
+  animation: categoryScroll 28s linear infinite;
+  will-change: transform;
+}
+
+/* Golden Trust Bar Diagonal Shine */
+@keyframes trustShine {
+  0% {
+    left: -40%;
+  }
+  50% {
+    left: 125%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+.animate-trust-shine {
+  animation: trustShine 5s ease-in-out infinite;
+}
+
+/* Continuous Top Announcement Ticker */
+@keyframes marqueeTicker {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-ticker {
+  animation: marqueeTicker 24s linear infinite;
+  will-change: transform;
+}
+
+/* ============================================================
+   CRACKER BLAST HOVER ANIMATIONS
+   ============================================================ */
+.cracker-blast-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease-out;
+}
+
+[class*="group"]:hover .cracker-blast-overlay,
+.group:hover .cracker-blast-overlay {
+  opacity: 1;
+}
+
+/* Central Cracker Blast Flare */
+@keyframes blastFlare {
+  0% {
+    transform: scale(0.15);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(1.5);
+    opacity: 0.95;
+    filter: blur(1px);
+  }
+  65% {
+    transform: scale(2.2);
+    opacity: 0.6;
+    filter: blur(5px);
+  }
+  100% {
+    transform: scale(2.9);
+    opacity: 0;
+    filter: blur(12px);
+  }
+}
+
+.cracker-flash,
+[class*="group"]:hover .cracker-flash,
+.group:hover .cracker-flash {
+  animation: blastFlare 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Expanding Shockwave Rings */
+@keyframes crackerRing1 {
+  0% {
+    transform: scale(0.2);
+    opacity: 1;
+    border-width: 3.5px;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+@keyframes crackerRing2 {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(0.5);
+    opacity: 0.9;
+    border-width: 3px;
+  }
+  100% {
+    transform: scale(3.1);
+    opacity: 0;
+    border-width: 0.8px;
+  }
+}
+
+.cracker-ring-1,
+[class*="group"]:hover .cracker-ring-1,
+.group:hover .cracker-ring-1 {
+  animation: crackerRing1 0.68s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.cracker-ring-2,
+[class*="group"]:hover .cracker-ring-2,
+.group:hover .cracker-ring-2 {
+  animation: crackerRing2 0.82s 0.06s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Radial flying spark particles */
+@keyframes sparkFly {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+    transform: translate(calc(var(--tx, 35px) * 0.55), calc(var(--ty, -35px) * 0.55)) scale(1.45);
+  }
+  75% {
+    opacity: 0.9;
+    transform: translate(var(--tx, 35px), var(--ty, -35px)) scale(1.1);
+  }
+  100% {
+    transform: translate(calc(var(--tx, 35px) * 1.45), calc(var(--ty, -35px) * 1.45)) scale(0);
+    opacity: 0;
+  }
+}
+
+.cracker-spark,
+[class*="group"]:hover .cracker-spark,
+.group:hover .cracker-spark {
+  animation: sparkFly 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Twinkling starlets burst */
+@keyframes starFly {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(calc(var(--tx, 30px) * 0.7), calc(var(--ty, -30px) * 0.7)) rotate(180deg) scale(1.6);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--tx, 30px) * 1.3), calc(var(--ty, -30px) * 1.3)) rotate(360deg) scale(0);
+    opacity: 0;
+  }
+}
+
+.cracker-star,
+[class*="group"]:hover .cracker-star,
+.group:hover .cracker-star {
+  animation: starFly 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Card hover glow & golden aura */
+.cracker-card-glow {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cracker-card-glow:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(245, 158, 11, 0.28), 0 0 20px rgba(220, 38, 38, 0.16);
+  border-color: #f59e0b;
+}
+
+/* Printer CSS for Order Invoice */
+@media print {
+  /* Hide all dashboard content like sidebars, headers, search filters */
+  body * {
+    visibility: hidden;
+  }
+  
+  /* Show only the invoice container */
+  #invoice-print-area, #invoice-print-area * {
+    visibility: visible;
+  }
+  
+  #invoice-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white;
+    color: black;
+    box-shadow: none;
+    border: none;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
